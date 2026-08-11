@@ -1,0 +1,22 @@
+.reward-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.reward-card:hover {
+  transform: translateY(-4px);
+}
+
+.reward-card h4 {
+  color: #6b7280;
+  margin-bottom: 10px;
+}
+
+.reward-card h2 {
+  color: #2563eb;
+  font-size: 28px;
+}

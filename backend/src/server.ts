@@ -10,10 +10,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get("/api/health", (_req, res) => {
+app.get("/", (_req, res) => {
   res.json({
     success: true,
-    message: "Wallet Dashboard API is running",
+    message: "Wallet Dashboard API is running 🚀",
+    endpoints: ["/api/dashboard", "/api/transactions", "/api/rewards"],
   });
 });
 

@@ -1,14 +1,6 @@
 import "./TransactionModal.css";
 
-interface Transaction {
-  id: number;
-  date: string;
-  merchant: string;
-  category: string;
-  amount: number;
-  status: string;
-  rewardCoins: number;
-}
+import type { Transaction } from "../../../types/transaction";
 
 interface Props {
   transaction: Transaction | null;
@@ -31,23 +23,34 @@ const TransactionModal = ({ transaction, onClose }: Props) => {
           <p>
             <strong>ID:</strong> {transaction.id}
           </p>
+
           <p>
-            <strong>Date:</strong> {transaction.date}
+            <strong>Date:</strong>{" "}
+            {new Date(transaction.timestamp).toLocaleString()}
           </p>
+
           <p>
             <strong>Merchant:</strong> {transaction.merchant}
           </p>
+
           <p>
             <strong>Category:</strong> {transaction.category}
           </p>
+
           <p>
             <strong>Amount:</strong> ₹{transaction.amount}
           </p>
+
+          <p>
+            <strong>Currency:</strong> {transaction.currency}
+          </p>
+
           <p>
             <strong>Status:</strong> {transaction.status}
           </p>
+
           <p>
-            <strong>Reward Coins:</strong> {transaction.rewardCoins}
+            <strong>Payment Method:</strong> {transaction.payment_method}
           </p>
         </div>
       </div>

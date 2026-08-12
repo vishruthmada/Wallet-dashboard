@@ -1,32 +1,37 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.45);
-
+  background: rgba(0, 0, 0, 0.45);
   display: flex;
   justify-content: center;
   align-items: center;
-
   z-index: 1000;
+  padding: 16px;
+  box-sizing: border-box;
 }
 
 .transaction-modal {
   width: 450px;
-  max-width: 90%;
-
+  max-width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
   background: white;
   border-radius: 12px;
   padding: 24px;
-
-  box-shadow: 0 8px 30px rgba(0,0,0,.25);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
 }
 
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   margin-bottom: 20px;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 22px;
 }
 
 .modal-header button {
@@ -38,4 +43,20 @@
 
 .modal-body p {
   margin: 12px 0;
+  word-break: break-word;
+}
+
+@media (max-width: 600px) {
+  .transaction-modal {
+    padding: 18px;
+    border-radius: 10px;
+  }
+
+  .modal-header h2 {
+    font-size: 19px;
+  }
+
+  .modal-body p {
+    font-size: 14px;
+  }
 }

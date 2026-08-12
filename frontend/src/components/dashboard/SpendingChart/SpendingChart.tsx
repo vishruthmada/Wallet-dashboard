@@ -8,10 +8,24 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-import { spendingTrendData } from "../../../constants/dashboardData";
+import { useTransactions } from "../../../hooks/useTransaction";
+import { getSpendingTrendAnalytics } from "../../../services/dashboard.service";
+
 import "./SpendingChart.css";
 
 const SpendingChart = () => {
+  const { data: transactions = [], isLoading, isError } = useTransactions();
+
+  if (isLoading) {
+    return <h3>Loading spending analytics...</h3>;
+  }
+
+  if (isError) {
+    return <h3>Failed to load spending analytics.</h3>;
+  }
+
+  const spendingTrendData = getSpendingTrendAnalytics(transactions);
+
   return (
     <div className="spending-chart">
       <h3>Monthly Spending Trend</h3>
@@ -24,7 +38,9 @@ const SpendingChart = () => {
 
           <YAxis />
 
-          <Tooltip />
+          <Tooltip
+            formatter={(value) => `₹${Number(value).toLocaleString("en-IN")}`}
+          />
 
           <Line
             type="monotone"

@@ -7,10 +7,21 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-import { categoryData } from "../../../constants/dashboardData";
+import { useTransactions } from "../../../hooks/useTransaction";
+import { getCategoryAnalytics } from "../../../services/dashboard.service";
+
 import "./CategoryChart.css";
 
-const COLORS = ["#2563EB", "#16A34A", "#F59E0B", "#DC2626"];
+const COLORS = [
+  "#2563EB",
+  "#16A34A",
+  "#F59E0B",
+  "#DC2626",
+  "#9333EA",
+  "#0891B2",
+  "#EA580C",
+  "#4F46E5",
+];
 
 interface Props {
   selectedCategory: string;
@@ -18,6 +29,18 @@ interface Props {
 }
 
 const CategoryChart = ({ selectedCategory, setSelectedCategory }: Props) => {
+  const { data: transactions = [], isLoading, isError } = useTransactions();
+
+  if (isLoading) {
+    return <h3>Loading category analytics...</h3>;
+  }
+
+  if (isError) {
+    return <h3>Failed to load category analytics.</h3>;
+  }
+
+  const categoryData = getCategoryAnalytics(transactions);
+
   return (
     <div className="category-chart">
       <h3>Category Distribution</h3>
@@ -31,7 +54,9 @@ const CategoryChart = ({ selectedCategory, setSelectedCategory }: Props) => {
             outerRadius={100}
             label
             onClick={(data) => {
-              const category = String(data?.name ?? "");
+              const category = data.name;
+
+              if (!category) return;
 
               if (selectedCategory === category) {
                 setSelectedCategory("");
@@ -40,12 +65,15 @@ const CategoryChart = ({ selectedCategory, setSelectedCategory }: Props) => {
               }
             }}
           >
-            {categoryData.map((_, index) => (
-              <Cell key={index} fill={COLORS[index % COLORS.length]} />
+            {categoryData.map((entry, index) => (
+              <Cell key={entry.name} fill={COLORS[index % COLORS.length]} />
             ))}
           </Pie>
 
-          <Tooltip />
+          <Tooltip
+            formatter={(value) => `₹${Number(value).toLocaleString("en-IN")}`}
+          />
+
           <Legend />
         </PieChart>
       </ResponsiveContainer>

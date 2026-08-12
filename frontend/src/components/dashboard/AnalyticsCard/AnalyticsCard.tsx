@@ -2,7 +2,7 @@ import "./AnalyticsCard.css";
 
 interface AnalyticsCardProps {
   title: string;
-  value: string;
+  value: string | number;
   subtitle: string;
 }
 

@@ -1,26 +1,17 @@
-import type { ColumnDef } from "@tanstack/react-table";
+import type { ColumnDef, SortingState } from "@tanstack/react-table";
 
 import {
   flexRender,
   getCoreRowModel,
   getSortedRowModel,
   useReactTable,
-  type SortingState,
 } from "@tanstack/react-table";
 
 import { useState } from "react";
 
-import "./TransactionTable.css";
+import type { Transaction } from "../../../types/transaction";
 
-interface Transaction {
-  id: number;
-  date: string;
-  merchant: string;
-  category: string;
-  amount: number;
-  status: string;
-  rewardCoins: number;
-}
+import "./TransactionTable.css";
 
 interface Props {
   transactions: Transaction[];
@@ -29,9 +20,10 @@ interface Props {
 
 const columns: ColumnDef<Transaction>[] = [
   {
-    accessorKey: "date",
+    accessorKey: "timestamp",
     header: "Date",
     enableSorting: true,
+    cell: ({ row }) => new Date(row.original.timestamp).toLocaleDateString(),
   },
   {
     accessorKey: "merchant",
@@ -55,14 +47,15 @@ const columns: ColumnDef<Transaction>[] = [
     enableSorting: true,
   },
   {
-    accessorKey: "rewardCoins",
-    header: "Reward Coins",
+    accessorKey: "payment_method",
+    header: "Payment Method",
     enableSorting: true,
   },
 ];
 
 const TransactionTable = ({ transactions, onTransactionClick }: Props) => {
   const [sorting, setSorting] = useState<SortingState>([]);
+
   const table = useReactTable({
     data: transactions,
     columns,
@@ -88,17 +81,15 @@ const TransactionTable = ({ transactions, onTransactionClick }: Props) => {
                   onClick={header.column.getToggleSortingHandler()}
                   style={{ cursor: "pointer" }}
                 >
-                  <>
-                    {flexRender(
-                      header.column.columnDef.header,
-                      header.getContext(),
-                    )}
+                  {flexRender(
+                    header.column.columnDef.header,
+                    header.getContext(),
+                  )}
 
-                    {{
-                      asc: " 🔼",
-                      desc: " 🔽",
-                    }[header.column.getIsSorted() as string] ?? null}
-                  </>
+                  {{
+                    asc: " 🔼",
+                    desc: " 🔽",
+                  }[header.column.getIsSorted() as string] ?? null}
                 </th>
               ))}
             </tr>

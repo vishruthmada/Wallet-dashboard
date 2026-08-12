@@ -4,7 +4,47 @@
   box-sizing: border-box;
 }
 
+html {
+  width: 100%;
+  min-height: 100%;
+}
+
 body {
+  width: 100%;
+  min-height: 100vh;
   font-family: Inter, Arial, sans-serif;
   background: #f5f7fb;
+  color: #1e293b;
+  overflow-x: hidden;
+}
+
+button,
+input,
+select {
+  font-family: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent long content from breaking the layout */
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  body {
+    font-size: 15px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
 }

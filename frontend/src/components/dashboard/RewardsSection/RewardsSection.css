@@ -3,7 +3,8 @@
   background: white;
   border-radius: 12px;
   padding: 24px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
 }
 
 .rewards-section h2 {
@@ -12,7 +13,7 @@
 
 .rewards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
 }
 
@@ -28,4 +29,27 @@
 
 .redeem-btn:hover {
   background: #1d4ed8;
+}
+
+@media (max-width: 900px) {
+  .rewards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .rewards-section {
+    margin-top: 24px;
+    padding: 16px;
+  }
+
+  .rewards-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .redeem-btn {
+    width: 100%;
+    margin-top: 20px;
+  }
 }

@@ -2,9 +2,10 @@
   background: white;
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   text-align: center;
   transition: transform 0.2s ease;
+  box-sizing: border-box;
 }
 
 .reward-card:hover {
@@ -19,4 +20,14 @@
 .reward-card h2 {
   color: #2563eb;
   font-size: 28px;
+}
+
+@media (max-width: 600px) {
+  .reward-card {
+    padding: 16px;
+  }
+
+  .reward-card h2 {
+    font-size: 24px;
+  }
 }

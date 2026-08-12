@@ -1,5 +1,11 @@
+.search-bar {
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .search-bar input {
   width: 100%;
+  box-sizing: border-box;
   padding: 12px 16px;
   border: 1px solid #d1d5db;
   border-radius: 8px;
@@ -9,4 +15,11 @@
 
 .search-bar input:focus {
   border-color: #2563eb;
+}
+
+@media (max-width: 600px) {
+  .search-bar input {
+    padding: 11px 14px;
+    font-size: 14px;
+  }
 }

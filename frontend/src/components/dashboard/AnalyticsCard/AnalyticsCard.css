@@ -3,7 +3,9 @@
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  min-width: 220px;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .analytics-card__title {
@@ -16,9 +18,20 @@
   font-size: 28px;
   color: #1e293b;
   margin-bottom: 8px;
+  word-break: break-word;
 }
 
 .analytics-card__subtitle {
   font-size: 14px;
   color: #16a34a;
+}
+
+@media (max-width: 600px) {
+  .analytics-card {
+    padding: 16px;
+  }
+
+  .analytics-card__value {
+    font-size: 24px;
+  }
 }

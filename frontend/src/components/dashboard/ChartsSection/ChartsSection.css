@@ -3,10 +3,22 @@
   grid-template-columns: 2fr 1fr;
   gap: 20px;
   margin-bottom: 40px;
+  min-width: 0;
+}
+
+.charts-section > * {
+  min-width: 0;
 }
 
 @media (max-width: 992px) {
   .charts-section {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .charts-section {
+    gap: 16px;
+    margin-bottom: 24px;
   }
 }
